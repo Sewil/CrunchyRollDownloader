@@ -6,7 +6,7 @@ Options:
  -b [ARG]: Link to batch text file, with one URL per row.
  -s:       Skips video download and only extracts english subtitles, if there are any.
  
- # Dependecies
+# Dependecies
 - Relies on youtube-dl which in turn relies on rtmpdump. The application downloads rtmpdump automatically if none is set in PATH. In the release I have attached youtube-dl so just set your PATH to the application folder and run it.
 
 # Configuration
