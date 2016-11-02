@@ -22,7 +22,7 @@ namespace CrunchyRollDownloader {
 		static bool subonly = false;
 		static string[] urls = new string[] { };
 		static bool downloaded = false;
-
+		static Useful.Stuff.Path youtubedl;
 		static void Main(string[] args) {
 			if (args.Length == 0) {
 				Console.WriteLine("Usage: CrunchyRollDownloader.exe [OPTIONS]");
@@ -62,6 +62,7 @@ namespace CrunchyRollDownloader {
 				}
 			}
 
+			youtubedl = new Useful.Stuff.Path(AssemblyDirectory + "\\youtube-dl.exe", PathType.FILE);
 			if (!"rtmpdump".ExistsOnPath()) {
 				Console.WriteLine("Couldn't find rtmpdump, would you like to download it? (Y/N)");
 				ConsoleKey key = new ConsoleKey();
@@ -106,7 +107,7 @@ namespace CrunchyRollDownloader {
 				string filePath = $"{Directory.GetCurrentDirectory()}\\{n}.mp4";
 
 				arguments += $" -v {url} -o \"{filePath}\"";
-				new ProcessStartInfo("youtube-dl.exe", arguments).StartProcess($"{arguments}");
+				new ProcessStartInfo(youtubedl.ToString(), arguments).StartProcess($"{arguments}");
 
 				var file = new Useful.Stuff.Path($"{filePath}", PathType.FILE);
 				file.Rename($"{file.NameWithoutExtension} [{file.CRC32}]");
