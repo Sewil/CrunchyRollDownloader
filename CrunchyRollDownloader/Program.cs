@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
-using Useful.Stuff;
+using SewilLibrary;
 using System.IO.Compression;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -56,8 +56,8 @@ namespace CrunchyRollDownloader {
 				} else if (arg.ToLower() == "-u") {
 					urls = new string[] { args[i + 1] };
 				} else if (arg.ToLower() == "-b") {
-					if (File.Exists(args[i + 1])) {
-						urls = File.ReadAllLines(args[i + 1]);
+					if (System.IO.File.Exists(args[i + 1])) {
+						urls = System.IO.File.ReadAllLines(args[i + 1]);
 					}
 				}
 			}
