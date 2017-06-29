@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Text;
-using SewilLibrary;
+using System.IO;
 using System.IO.Compression;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -15,14 +14,14 @@ namespace CrunchyRollDownloader {
 				string codeBase = Assembly.GetExecutingAssembly().CodeBase;
 				UriBuilder uri = new UriBuilder(codeBase);
 				string path = Uri.UnescapeDataString(uri.Path);
-				return System.IO.Path.GetDirectoryName(path);
+				return Path.GetDirectoryName(path);
 			}
 		}
 
 		static bool subonly = false;
 		static string[] urls = new string[] { };
 		static bool downloaded = false;
-		static Useful.Stuff.Path youtubedl;
+		static SewilLibrary.File youtubedl;
 		static void Main(string[] args) {
 			if (args.Length == 0) {
 				Console.WriteLine("Usage: CrunchyRollDownloader.exe [OPTIONS]");
@@ -56,13 +55,13 @@ namespace CrunchyRollDownloader {
 				} else if (arg.ToLower() == "-u") {
 					urls = new string[] { args[i + 1] };
 				} else if (arg.ToLower() == "-b") {
-					if (System.IO.File.Exists(args[i + 1])) {
-						urls = System.IO.File.ReadAllLines(args[i + 1]);
+					if (File.Exists(args[i + 1])) {
+						urls = File.ReadAllLines(args[i + 1]);
 					}
 				}
 			}
 
-			youtubedl = new Useful.Stuff.Path(AssemblyDirectory + "\\youtube-dl.exe", PathType.FILE);
+			youtubedl = new SewilLibrary.File(AssemblyDirectory + "\\youtube-dl.exe");
 			if (!"rtmpdump".ExistsOnPath()) {
 				Console.WriteLine("Couldn't find rtmpdump, would you like to download it? (Y/N)");
 				ConsoleKey key = new ConsoleKey();
@@ -77,16 +76,16 @@ namespace CrunchyRollDownloader {
 				using (var client = new WebClient()) {
 					client.DownloadProgressChanged += Client_DownloadProgressChanged;
 					client.DownloadFileCompleted += Client_DownloadFileCompleted;
-					Directory.CreateDirectory(System.IO.Path.GetTempPath() + "\\CrunchyRollDownloader");
-					client.DownloadFileAsync(new Uri("http://rtmpdump.mplayerhq.hu/download/rtmpdump-2.3-windows.zip"), System.IO.Path.GetTempPath() + "\\CrunchyRollDownloader\\rtmpdump-2.3-windows.zip");
+					Directory.CreateDirectory(Path.GetTempPath() + "\\CrunchyRollDownloader");
+					client.DownloadFileAsync(new Uri("http://rtmpdump.mplayerhq.hu/download/rtmpdump-2.3-windows.zip"), Path.GetTempPath() + "\\CrunchyRollDownloader\\rtmpdump-2.3-windows.zip");
 				}
 
 				while (!downloaded) { }
 
-				string dir = System.IO.Path.GetTempPath() + "\\CrunchyRollDownloader";
-				Useful.Stuff.Path zip = new Useful.Stuff.Path(dir + "\\rtmpdump-2.3-windows.zip", PathType.FILE);
+				string dir = Path.GetTempPath() + "\\CrunchyRollDownloader";
+				var zip = new SewilLibrary.File(dir + "\\rtmpdump-2.3-windows.zip");
 				ZipFile.ExtractToDirectory(zip.ToString(), dir);
-				Useful.Stuff.Path rtmpdump = new Useful.Stuff.Path(dir + "\\rtmpdump-2.3\\rtmpdump.exe", PathType.FILE);
+				var rtmpdump = new SewilLibrary.File(dir + "\\rtmpdump-2.3\\rtmpdump.exe");
 				rtmpdump.Move(AssemblyDirectory + "\\" + rtmpdump.Name);
 			}
 
@@ -107,9 +106,10 @@ namespace CrunchyRollDownloader {
 				string filePath = $"{Directory.GetCurrentDirectory()}\\{n}.mp4";
 
 				arguments += $" -v {url} -o \"{filePath}\"";
-				new ProcessStartInfo(youtubedl.ToString(), arguments).StartProcess($"{arguments}");
+				var info = new ProcessStartInfo(youtubedl.ToString(), arguments);
+				Process.Start(info);
 
-				var file = new Useful.Stuff.Path($"{filePath}", PathType.FILE);
+				var file = new SewilLibrary.File($"{filePath}");
 				file.Rename($"{file.NameWithoutExtension} [{file.CRC32}]");
 			}
 		}

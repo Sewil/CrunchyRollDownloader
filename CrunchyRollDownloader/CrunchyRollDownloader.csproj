@@ -38,9 +38,8 @@
       <HintPath>..\packages\Nito.KitchenSink.CRC.1.1.0\lib\net40-Client\Nito.KitchenSink.CRC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SewilLibrary, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sewil.SewilLibrary.1.1.3\lib\net452\SewilLibrary.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SewilLibrary, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sewil.SewilLibrary.1.3.1\lib\net452\SewilLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
