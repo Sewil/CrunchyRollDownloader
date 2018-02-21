@@ -7,8 +7,8 @@
     <ProjectGuid>{3DA26C7E-F6FD-4C2F-B1C4-93C94AE88150}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CrunchyRollDownloader</RootNamespace>
-    <AssemblyName>CrunchyRollDownloader</AssemblyName>
+    <RootNamespace>CrunchyrollDownloader</RootNamespace>
+    <AssemblyName>CrunchyrollDownloader</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,13 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nito.KitchenSink.CRC, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nito.KitchenSink.CRC.1.1.0\lib\net40-Client\Nito.KitchenSink.CRC.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SewilLibrary, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sewil.SewilLibrary.1.3.1\lib\net452\SewilLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -55,20 +48,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtension.cs" />
-    <Compile Include="User.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>User.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="User.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>User.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

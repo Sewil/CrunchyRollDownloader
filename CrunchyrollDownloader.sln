@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrunchyRollDownloader", "CrunchyRollDownloader\CrunchyRollDownloader.csproj", "{3DA26C7E-F6FD-4C2F-B1C4-93C94AE88150}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrunchyrollDownloader", "CrunchyrollDownloader\CrunchyrollDownloader.csproj", "{3DA26C7E-F6FD-4C2F-B1C4-93C94AE88150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FAEDB81-0113-45F5-8E87-9CCA86A8870C}
 	EndGlobalSection
 EndGlobal
